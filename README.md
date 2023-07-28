@@ -6,6 +6,6 @@
 [![Coverage](https://codecov.io/gh/grahamedwards/Decay.jl/branch/main/graph/badge.svg)](https://codecov.io/gh/grahamedwards/Decay.jl)
 
 
-🚧 Under Construction 🚧
+🚧 Under Construction 🚧 (Empty for now)
 
 An ultralight package to stash useful radiometric decay constants for geochronology and cosmochronology, along with useful decay and ingrowth equations. 
