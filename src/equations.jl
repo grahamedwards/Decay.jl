@@ -59,7 +59,7 @@ D_(t::Number, λ::Number; No=1., Do=0.) = Do + No * (1 - exp(-λ*t))
 ```julia
 halflife(λ)
 ```
-Calculates the decay constant (λ) from the halflife with ` log(2)/λ`
+Calculates the half-life from a decay constant (λ) with ` log(2)/λ`
 
 see also: `lambda`
 
@@ -75,7 +75,7 @@ halflife(lambda::Number) = 0.6931471805599453/float(lambda)
 ```julia
 lambda(halflife)
 ```
-Calculates the decay constant (λ) from the half-life (`t`) with ` = log(2)/t`
+Calculates the decay constant (λ) from a half-life (`t`) with ` = log(2)/t`
 
 see also: `halflife`
 
