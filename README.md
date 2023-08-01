@@ -14,6 +14,6 @@ To add Decay.jl to your Julia environment, just type `]` into the Julia REPL to 
 
 After installing, you can load the package with `using Decay`.
 
-Decay only exports a NamedTuple `λ`, which contains decay constants. Within the package scope, there are a few helpful equations: `D`,`D_`, `N`, `lambda`, and `halflife`. 
+Decay only exports a NamedTuple `λ`, which contains decay constants. Within the package scope, there are a few helpful equations: `D`,`D_`, `N`, `lambda`, and `halflife`. Check out the documentation to learn more. 
 
 I will continue adding to these as free-time permits 😵‍💫

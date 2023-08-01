@@ -18,5 +18,11 @@ using Test
     @test Decay.D_(2*Decay.halflife(λ.U238),λ.U238,No=1,Do=1) ≈ 1.75
 
 # Series decay equations
+    @test Decay.dN2_dt(λ.U234,λ.U238,N1=1,N2=0) ≈ 1.551254796141587e-10
+    @test Decay.N2(1e6,λ.U234,λ.U238,N1o=1,N2o=0) ≈ 5.169390742865588e-5
+
+
+
+# Series decay equations
 
 end
