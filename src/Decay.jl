@@ -26,7 +26,8 @@ isotope(s) | reference | doi | note |
 ⁴⁰K | Renne+ 2011 | [10.1016/j.gca.2011.06.021](https://doi.org/10.1016/j.gca.2011.06.021) | [2]
 
 [1] This value is similar to the often-used value of Le Roux & Glendenin 1963 (1.40 ± 0.007 Gy). Audi+ 1997 ( doi: [10.1016/S0375-9474(97)00482-X](https://doi.org/10.1016/S0375-9474(97)00482-X)) reports 14.05 ± 0.04 Gy and references Bonetti+ 1995 (doi: [https://doi.org/10.1103/PhysRevC.51.2530, which does not appear to report a λ for α-decay.
-[2] (`σ`)`K40` are NamedTuples containing fields `β` and `e` for the branched decay. The total decay constant is obtained with `sum(λ.K40)`. I also include the now deprecated decay constants of Steiger & Jager 1977 (doi: [10.1016/0012-821X(77)90060-7](https://doi.org/10.1016/0012-821X(77)90060-7)). See also Renne+ 2010 (doi: [10.1016/j.gca.2010.06.017](https://doi.org/10.1016/j.gca.2010.06.017)).
+
+[2] `K40` and `σK40` are NamedTuples containing fields `β` and `e` for the branched decay. The total decay constant is obtained with `sum(λ.K40)`. I also include the now deprecated decay constants of Steiger & Jager 1977 (doi: [10.1016/0012-821X(77)90060-7](https://doi.org/10.1016/0012-821X(77)90060-7)). See also Renne+ 2010 (doi: [10.1016/j.gca.2010.06.017](https://doi.org/10.1016/j.gca.2010.06.017)).
 
 """
 const λ = (; 
