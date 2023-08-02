@@ -65,3 +65,8 @@ jobs:
             using Decay
             DocMeta.setdocmeta!(Decay, :DocTestSetup, :(using Decay); recursive=true)
             doctest(Decay)'
+
+- name: Upload coverage reports to Codecov
+  uses: codecov/codecov-action@v3
+  env:
+    CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
