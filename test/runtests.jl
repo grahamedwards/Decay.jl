@@ -19,10 +19,7 @@ using Test
 
 # Series decay equations
     @test Decay.dN2_dt(λ.U234,λ.U238,N1=1,N2=0) ≈ 1.551254796141587e-10
-    @test Decay.N2(1e6,λ.U234,λ.U238,N1o=1,N2o=0) ≈ 5.169390742865588e-5
-
-
-
-# Series decay equations
-
+    @test Decay.N2(1e6,λ.U234,λ.U238,N1o=1,N2o=0) ≈ Decay.Q(1e6,λ.U234,λ.U238,P0=1,Q0=0) ≈ 5.169390742865588e-5
+    @test Decay.R(5e5, λ.Th230, λ.U234, λ.U238, R0=0, Q0=λ.U238/λ.U234, P0=1) ≈ 1.6742628389341084e-5
+    
 end
