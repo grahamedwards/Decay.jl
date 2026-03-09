@@ -27,14 +27,17 @@ using Test
 
 # Activity Calculations
 
+    @test Becquerel(Becquerel(1)) === Becquerel(1)
     @test Becquerel(Curie(1)).n ≈ 3.7e10
     @test Becquerel(DPM(60)).n ≈ 1
     @test Becquerel(PerYear(31557600)).n ≈ 1
     
+    @test Curie(Curie(1)) === Curie(1)
     @test Curie(Becquerel(3.7e10)).n ≈ 1
     @test Curie(DPM(3.7e10*60)).n ≈ 1
     @test Curie(PerYear(31557600*3.7e10)).n ≈ 1
 
+    @test DPM(DPM(1)) === DPM(1)
     @test DPM(Curie(1)).n ≈ 2.22e12
     @test DPM(Becquerel(1)).n ≈ 60
     @test DPM(PerYear(31557600)).n ≈ 60

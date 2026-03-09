@@ -93,19 +93,22 @@ const secondsperyear = float(31557600)
 const secondsperminute = float(60)
 const bqperci = 3.7e10
 
-
+Becquerel(x::Becquerel) = x 
 Becquerel(x::Curie) = Becquerel(x.n * bqperci )
 Becquerel(x::PerYear) = Becquerel(x.n / secondsperyear)
 Becquerel(x::DPM) = Becquerel(x.n / secondsperminute)
 
+Curie(x::Curie) = x
 Curie(x::Becquerel) = Curie( x.n / bqperci)
 Curie(x::PerYear) = Curie(Becquerel(x))
 Curie(x::DPM) = Curie(Becquerel(x))
 
+DPM(x::DPM) = x
 DPM(x::Becquerel) = DPM(secondsperminute * x.n)
 DPM(x::Curie) = DPM(Becquerel(x))
 DPM(x::PerYear) = DPM(Becquerel(x))
 
+PerYear(x::PerYear) = x
 PerYear(x::Becquerel) = PerYear(x.n * secondsperyear)
 PerYear(x::DPM) = PerYear(Becquerel(x))
 PerYear(x::Curie) = PerYear(Becquerel(x))
