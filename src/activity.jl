@@ -95,7 +95,7 @@ const bqperci = 3.7e10
 
 
 Becquerel(x::Curie) = Becquerel(x.n * bqperci )
-Becquerel(x::PerYear) = Becquerel(x.n * secondsperyear)
+Becquerel(x::PerYear) = Becquerel(x.n / secondsperyear)
 Becquerel(x::DPM) = Becquerel(x.n / secondsperminute)
 
 Curie(x::Becquerel) = Curie( x.n / bqperci)
@@ -106,7 +106,7 @@ DPM(x::Becquerel) = DPM(secondsperminute * x.n)
 DPM(x::Curie) = DPM(Becquerel(x))
 DPM(x::PerYear) = DPM(Becquerel(x))
 
-PerYear(x::Becquerel) = PerYear(x.n / secondsperyear)
+PerYear(x::Becquerel) = PerYear(x.n * secondsperyear)
 PerYear(x::DPM) = PerYear(Becquerel(x))
 PerYear(x::Curie) = PerYear(Becquerel(x))
 
