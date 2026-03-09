@@ -119,3 +119,30 @@ Ci(x::Number) = Curie(x)
 
 Bq(x::RadUnit) = Becquerel(x)
 Bq(x::Number) = Becquerel(x)
+
+
+"""
+
+    act2conc(A, lambda, atomic_mass)
+
+    Convert a per gram activity to a concentration of radioisotope of interest, given its activity (as a [`RadUnit`](@ref)), its decay constant (a⁻¹, see [`Decay.λ`](@ref)), and its `atomic_mass` (in amu or g/mol). 
+    
+"""
+function act2conc(A::RadUnit, lambda::Float64, atomic_mass::Number)
+    atoms_per_gram = PerYear(A)() / float(lambda) # convert to per year decays and divide by decay constant, i.e. N = -λ/ΔN
+    g_per_atom = float(atomic_mass) / 6.02214076e23 # convert the atomic mass to the g/atom using Avogadro's Number. 
+    atoms_per_gram * g_per_atom 
+end
+
+"""
+
+    conc2act(C, lambda, atomic_mass)
+
+    Convert a  concentration of a radioisotope to a Bq/g activity, given its concentration (g/g), its decay constant (a⁻¹, see [`Decay.λ`](@ref)), and its `atomic_mass` (in amu or g/mol). 
+    
+"""
+function conc2act(C::Number, lambda::Float64, atomic_mass::Number)
+    g_per_atom  = float(atomic_mass) / 6.02214076e23 # convert the atomic mass to the g/atom using Avogadro's Number. 
+    atoms_per_gram = float(C) / g_per_atom # convert gᵣ/gₜ to atoms/gₜ using the gᵣ/atomᵣ
+    Becquerel(PerYear(float(lambda) * atoms_per_gram)) # calculate activity in Bq/g, i.e. ΔN = -λN
+end

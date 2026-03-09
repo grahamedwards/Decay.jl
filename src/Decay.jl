@@ -2,7 +2,7 @@ module Decay
 
 include("equations.jl")
 include("activity.jl")
-export RadUnit, Becquerel, Curie, DPM, PerYear, Ci, Bq
+export RadUnit, Becquerel, Curie, DPM, PerYear, Ci, Bq, act2conc, conc2act
 
 
 """

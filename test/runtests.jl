@@ -47,5 +47,9 @@ using Test
 
     @test Bq(1) == Becquerel(1)
     @test Bq(Curie(1)) == Becquerel(Curie(1))
+
+
+    @test act2conc(conc2act(1, Decay.lambda.U238, 238), Decay.lambda.U238,238) ≈ 1
+    @test act2conc(Bq(41.19), Decay.lambda.Th229, 229) ≈ 5.625703433435047e-9
     
 end
