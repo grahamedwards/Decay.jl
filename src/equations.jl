@@ -128,7 +128,7 @@ end
 """
 
 ```julia
-R(t, l3, l2, l1; R0=0; Q0=1, P0=1)
+Decay.R(t, l3, l2, l1; R0=0; Q0=1, P0=1)
 ```
 
 Calculate the the abundance of a radioactive daughter isotope `R` in a decay-series after some time `t`, given its decay constant `l3`, the decay constant of `l2` of its parent `Q`, and the decay constant `l1` of its parent's parent `P`. Optionally provide the initial abundances of the isotopes `R0` (default = 0), `Q0` (default = 1), and `P0` (default = 1).
@@ -154,14 +154,14 @@ end
 """
 
 ```julia
-lambda(halflife)
+decayconstant(halflife)
 ```
 Calculates the decay constant (λ) from a half-life (`t`) with ` = log(2)/t`
 
 see also: [`halflife`](@ref)
 
 """
-lambda(halflife::Number) = 0.6931471805599453/float(halflife)
+decayconstant(halflife::Number) = log(2) / float(halflife)
 
 
 
@@ -174,7 +174,7 @@ halflife(λ)
 ```
 Calculates the half-life from a decay constant (λ) with ` log(2)/λ`
 
-see also: [`lambda`](@ref)
+see also: [`decayconstant`](@ref)
 
 """
-halflife(lambda::Number) = Decay.lambda(lambda)
+halflife(dc::Number) = Decay.decayconstant(dc)
