@@ -112,43 +112,7 @@ PerYear(x::Curie) = PerYear(Becquerel(x))
 
 
 Ci(x::RadUnit) = Curie(x)
+Ci(x::Number) = Curie(x)
 
 Bq(x::RadUnit) = Becquerel(x)
-
-
-
-
-
-
-"""
-
-    Concentration
-
-Supertype for all concentration units. Any `Concentration` is callable by its single field `n` or by calling it as a function (see examples below). Converting between types is accomplished by inputting any `RadUnit` type into the constructor of another `RadUnit` type. 
-
-See also: [`Permille`](@ref), [`PPM`](@ref), [`PPB`](@ref)
-
-## Examples
-
-    julia> c = PPM(3)
-    PPM(3.0)
-
-    julia> c.n, c()
-    (3.0, 3.0)
-
-"""
-abstract type Concentration end
-
-(x::Concentration)() = x.n
-
-struct Permille <: Concentration
-    n::Float64
-end
-
-struct PPM <: Concentration
-    n::Float64
-end
-
-struct PPB <: Concentration
-    n::Float64
-end
+Bq(x::Number) = Becquerel(x)

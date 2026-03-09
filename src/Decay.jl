@@ -26,6 +26,9 @@ isotope(s) | reference | doi | note |
 ²³⁴U, ²³⁰Th | Cheng+ 2013 | [10.1016/j.epsl.2013.04.006](https://doi.org/10.1016/j.epsl.2013.04.006)
 ²²⁶Ra | Holden 1990 | [10.1351/pac199062050941](https://doi.org/10.1351/pac199062050941) |
 ⁴⁰K | Renne+ 2011 | [10.1016/j.gca.2011.06.021](https://doi.org/10.1016/j.gca.2011.06.021) | [2]
+²³³U | Wikipedia | [Isotopes of Uranium](https://en.wikipedia.org/wiki/Isotopes_of_uranium) |
+²³⁶U | Wikipedia | [Isotopes of Uranium](https://en.wikipedia.org/wiki/Isotopes_of_uranium)|
+²²⁹Th | compilation | [SRM 4328d certificate](https://tsapps.nist.gov/srmext/certificates/4328d.pdf) |
 
 [1] This value is similar to the often-used value of Le Roux & Glendenin 1963 (1.40 ± 0.007 Gy). Audi+ 1997 ( doi: [10.1016/S0375-9474(97)00482-X](https://doi.org/10.1016/S0375-9474(97)00482-X)) reports 14.05 ± 0.04 Gy and references Bonetti+ 1995 (doi: [https://doi.org/10.1103/PhysRevC.51.2530, which does not appear to report a λ for α-decay.
 
