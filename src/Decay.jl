@@ -4,6 +4,7 @@ include("equations.jl")
 include("activity.jl")
 export RadUnit, Becquerel, Curie, DPM, PerYear, Ci, Bq, act2conc, conc2act
 
+export λ
 
 """
 
@@ -35,7 +36,7 @@ isotope(s) | reference | doi | note |
 [2] `K40` and `sK40` are NamedTuples containing fields `β` and `e` for the branched decay. The total decay constant is obtained with `sum(λ.K40)`. I also include the now deprecated decay constants of Steiger & Jager 1977 (doi: [10.1016/0012-821X(77)90060-7](https://doi.org/10.1016/0012-821X(77)90060-7)). See also Renne+ 2010 (doi: [10.1016/j.gca.2010.06.017](https://doi.org/10.1016/j.gca.2010.06.017)).
 
 """
-const lambda = λ = (; 
+const λ = const lambda = (; 
 # Uranium series
     U238 = decayconstant(4.4683e9),
     sU238 = decayconstant(2.4e6),

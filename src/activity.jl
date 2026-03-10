@@ -34,6 +34,8 @@ A `struct` denoting becquerels, the SI unit of radioactivity, defined as an acti
     julia> Becquerel(Curie(1))
     Becquerel(3.7e10)
 
+See also: [`Bq`](@ref)
+
 """
 struct Becquerel <: RadUnit
     n::Float64
@@ -50,6 +52,8 @@ Also converts any [`RadUnit`](@ref) to a Ci.
 
     julia> Curie(Becquerel(3.7e10))
     Curie(1.0)
+
+See also: [`Ci`](@ref)
 
 """
 struct Curie <: RadUnit
@@ -114,9 +118,24 @@ PerYear(x::DPM) = PerYear(Becquerel(x))
 PerYear(x::Curie) = PerYear(Becquerel(x))
 
 
+"""
+
+    Ci
+
+Abbreviation of [`Curie`](@ref) with identical functionality.
+
+"""
 Ci(x::RadUnit) = Curie(x)
 Ci(x::Number) = Curie(x)
 
+
+"""
+
+    Bq
+
+Abbreviation of [`Becquerel`](@ref) with identical functionality.
+
+"""
 Bq(x::RadUnit) = Becquerel(x)
 Bq(x::Number) = Becquerel(x)
 
@@ -125,7 +144,11 @@ Bq(x::Number) = Becquerel(x)
 
     act2conc(A, lambda, atomic_mass)
 
-    Convert a per gram activity to a concentration of radioisotope of interest, given its activity (as a [`RadUnit`](@ref)), its decay constant (a⁻¹, see [`Decay.λ`](@ref)), and its `atomic_mass` (in amu or g/mol). 
+Convert a per gram activity to a concentration for a radioisotope of interest, given its activity `A` (as a [`RadUnit`](@ref)), its decay constant `lambda` (in a⁻¹, see [`Decay.λ`](@ref)), and its `atomic_mass` (in amu or g/mol).
+
+    act2conc(A, radioisotope)
+
+Alternatively, provide the activity `A` and the Symbol key of the radioisotope in `λ` (`Decay.lambda`), e.g. `:U238`. 
     
 """
 function act2conc(A::RadUnit, lambda::Float64, atomic_mass::Number)
@@ -134,15 +157,31 @@ function act2conc(A::RadUnit, lambda::Float64, atomic_mass::Number)
     atoms_per_gram * g_per_atom 
 end
 
+function act2conc(A::RadUnit, radioisotope::Symbol)
+    @assert radioisotope ∈ keys(Decay.lambda) "radioisotope must be a field of λ or Decay.lambda"
+    n = parse(Int,filter(isdigit,string(radioisotope)))
+    return act2conc(A, Decay.lambda[radioisotope],n)
+end
+
 """
 
     conc2act(C, lambda, atomic_mass)
 
-    Convert a  concentration of a radioisotope to a Bq/g activity, given its concentration (g/g), its decay constant (a⁻¹, see [`Decay.λ`](@ref)), and its `atomic_mass` (in amu or g/mol). 
+Convert a  concentration of a radioisotope to a Bq/g activity, given its concentration (g/g), its decay constant (a⁻¹, see [`Decay.λ`](@ref)), and its `atomic_mass` (in amu or g/mol). 
+
+    conc2act(C, radioisotope)
+
+Alternatively, provide the activity `A` and the Symbol key of the radioisotope in `λ` (`Decay.lambda`), e.g. `:U238`. 
     
 """
 function conc2act(C::Number, lambda::Float64, atomic_mass::Number)
     g_per_atom  = float(atomic_mass) / 6.02214076e23 # convert the atomic mass to the g/atom using Avogadro's Number. 
     atoms_per_gram = float(C) / g_per_atom # convert gᵣ/gₜ to atoms/gₜ using the gᵣ/atomᵣ
     Becquerel(PerYear(float(lambda) * atoms_per_gram)) # calculate activity in Bq/g, i.e. ΔN = -λN
+end
+
+function conc2act(C::Number, radioisotope::Symbol)
+    @assert radioisotope ∈ keys(Decay.lambda) "radioisotope must be a field of λ or Decay.lambda"
+    n = parse(Int,filter(isdigit,string(radioisotope)))
+    return conc2act(C, Decay.lambda[radioisotope], n)
 end

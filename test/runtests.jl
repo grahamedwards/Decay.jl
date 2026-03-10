@@ -27,6 +27,8 @@ using Test
 
 # Activity Calculations
 
+    @test Becquerel(1).n === Becquerel(1)()
+
     @test Becquerel(Becquerel(1)) === Becquerel(1)
     @test Becquerel(Curie(1)).n ≈ 3.7e10
     @test Becquerel(DPM(60)).n ≈ 1
@@ -42,6 +44,11 @@ using Test
     @test DPM(Becquerel(1)).n ≈ 60
     @test DPM(PerYear(31557600)).n ≈ 60
 
+    @test PerYear(PerYear(1)) === PerYear(1)
+    @test PerYear(Becquerel(1)).n ≈ 31557600
+    @test PerYear(DPM(60/31557600)).n ≈ 1
+    @test PerYear(Curie(1/(31557600*3.7e10))).n ≈ 1
+
     @test Ci(1) == Curie(1)
     @test Ci(Becquerel(1)) == Curie(Becquerel(1))
 
@@ -51,5 +58,8 @@ using Test
 
     @test act2conc(conc2act(1, Decay.lambda.U238, 238), Decay.lambda.U238,238) ≈ 1
     @test act2conc(Bq(41.19), Decay.lambda.Th229, 229) ≈ 5.625703433435047e-9
+    
+    @test conc2act(0.01, Decay.lambda.U238, 238) == conc2act(0.01, :U238)
+    @test act2conc(Bq(1), Decay.lambda.U238, 238) == act2conc(Bq(1), :U238)
     
 end
